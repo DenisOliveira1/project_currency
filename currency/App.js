@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Text, View, Picker, StyleSheet} from 'react-native'
 
-import Input , {update} from './components/Input'
+import Input from './components/Input'
 
 const App = () => {
 
