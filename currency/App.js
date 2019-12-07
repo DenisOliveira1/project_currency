@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Text, View, Picker, StyleSheet} from 'react-native'
 
-import Input from './components/Input'
+import Input , {update} from './components/Input'
 
 const App = () => {
 
@@ -9,8 +9,35 @@ const App = () => {
     "Dólar Americano": "USD",
     "Real": "BRL",
     "Dólar de Hong Kong": "HKD",
-    "Dólar canadense": "CAD",
-    "Euro": "EUR"
+    "Dólar Canadense": "CAD",
+    "Euro": "EUR",
+    "Rublo Russo ": "RUB",
+    "Peso Filipino": "PHP",
+    "Coroa Islandesa": "ISK",
+    "Coroa dinamarquesa": "DKK",
+    "Florim húngaro ": "HUF",
+    "Coroa Tcheca": "CZK",
+    "Libra Esterlina": "GBP",
+    "Leu Romeno": "RON",
+    "Coroa Sueca ": "SEK",
+    "Rupia Indonésia": "IDR",
+    "Rupia Indiana ": "INR",
+    "Kuna Croata": "HRK",
+    "Iene Japonês": "JPY",
+    "Baht Tailandês ": "THB",
+    "Franco Suíço": "CHF",
+    "Ringgit Malaio": "MYR",
+    "Lev Búlgaro": "BGN",
+    "Lira Turca": "TRY",
+    "Remimbi": "CNY",
+    "Coroa Norueguesa": "NOK",
+    "Dólar Neozelandês ": "NZD",
+    "Rand Sul-Africano": "ZAR",
+    "Peso Mexicano": "MXN",
+    "Dólar Singapuriano": "SGD",
+    "Dólar Australiano": "AUD",
+    "Won Sul-Coreano": "KRW",
+    "Zloty Polonês": "PLN"  
   }
 
   //states
@@ -23,10 +50,9 @@ const App = () => {
       setResult(<Input from={fromParamether} to={to}></Input>)
   }
 
-  //functions
-  const updateFrom = (from) =>{
-      setFrom(from)
-      setResult(<Input from={from} to={toParamether}></Input>)
+  const updateFrom = (from1) =>{
+      setFrom(from1);
+      setResult(<Input from={from1} to={toParamether}></Input>)
   }
 
   const getItems = () =>{
@@ -35,10 +61,6 @@ const App = () => {
       items.push(<Picker.Item label={i} value={currencies[i]} key={currencies[i]}/>)
     }
     return items
-  }
-  let cond;
-  const update = (to1, from1) => {
-    cond = <Input from={from1} to={to1}></Input>;
   }
 
   //return
@@ -80,9 +102,11 @@ const App = () => {
 const styles = StyleSheet.create({
 
   main: {
+    display: "flex",
     alignItems: "center",
     backgroundColor: "lightblue",
     height: "100%",
+    width: "100%"
   },
 
   picker: {

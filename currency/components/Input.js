@@ -4,23 +4,25 @@ import React, {Component} from 'react'
 import {Text, View, StyleSheet} from 'react-native'
 
 class Input extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { data: "" };
+  }
+
+
     config = {
         method: "GET",
-        url: `https://api.exchangeratesapi.io/latest?base=${this.props.from}`,
         success: response => response.rates[this.props.to],
         error: error => console.error(error)
     }
 
-    state = {
-        data: ""
-    }  
 
-    componentDidMount = () => {
-        fetch(this.config.url, {method: this.config.method})
+     update() {
+        fetch(`https://api.exchangeratesapi.io/latest?base=${this.props.from}`, {method: this.config.method})
         .then((response) => response.json())
         .then((responseJson) => {
             this.setState({
-                data: this.config.success(responseJson)
+                data: this.config.success(responseJson).toFixed(2)
             })
         })
         .catch((error) => {
@@ -28,12 +30,21 @@ class Input extends Component {
         })
     }
 
+  componentDidUpdate() {
+      this.update();
+    }
+
+    componentWillMount() {
+      this.update();
+    }
+
     render() {
         return (
            <View style={styles.result}>
+      
               <Text style={{
                   fontSize: 20,
-              }}>{`1,00 ${this.props.from} -> ${this.state.data} ${this.props.to} `}</Text>
+              }}>{`1.00 ${this.props.from} -> ${this.state.data} ${this.props.to} `}</Text>
            </View>
         )
      }
