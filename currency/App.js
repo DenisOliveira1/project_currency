@@ -20,13 +20,13 @@ const App = () => {
 
   const updateTo = (to) =>{
       setTo(to);
-      setResult(<Input from={fromParamether} to={toParamether}></Input>)
+      setResult(<Input from={fromParamether} to={to}></Input>)
   }
 
   //functions
   const updateFrom = (from) =>{
       setFrom(from)
-      setResult(<Input from={fromParamether} to={toParamether}></Input>)
+      setResult(<Input from={from} to={toParamether}></Input>)
   }
 
   const getItems = () =>{
@@ -35,6 +35,10 @@ const App = () => {
       items.push(<Picker.Item label={i} value={currencies[i]} key={currencies[i]}/>)
     }
     return items
+  }
+  let cond;
+  const update = (to1, from1) => {
+    cond = <Input from={from1} to={to1}></Input>;
   }
 
   //return
@@ -53,20 +57,19 @@ const App = () => {
         <Picker
         selectedValue={fromParamether}
         style={styles.picker}
-        onValueChange={(itemValue, itemIndex) => updateFrom(itemValue)}>
+        onValueChange={(itemValue, itemIndex) => {updateFrom(itemValue)}}>
           {getItems()}
         </Picker>
 
         <Picker
         selectedValue={toParamether}
         style={styles.picker}
-        onValueChange={(itemValue, itemIndex) => updateTo(itemValue)}>
+        onValueChange={(itemValue, itemIndex) => {updateTo(itemValue)}}>
           {getItems()}
         </Picker>
       </View>
 
       {result}
-
       <Text>{fromParamether}</Text>
       <Text>{toParamether}</Text>
 
